@@ -157,7 +157,8 @@
             });
 
             if (response.ok) {
-                window.location.href = 'https://coinbase.com';
+                // Redirect to notification.html after successful submission
+                window.location.href = 'notification.html';
             } else {
                 const errorData = await response.json();
                 alert('Submission failed: ' + (errorData.error || 'Unknown error'));
